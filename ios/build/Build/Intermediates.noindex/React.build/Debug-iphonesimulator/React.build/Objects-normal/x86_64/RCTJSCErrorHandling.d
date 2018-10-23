@@ -1,0 +1,10 @@
+dependencies: \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTJSCErrorHandling.mm \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTJSCErrorHandling.h \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/main/Desktop/streetwear/clout/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/main/Desktop/streetwear/clout/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTJSStackFrame.h \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/main/Desktop/streetwear/clout/node_modules/react-native/React/Base/RCTUtils.h
