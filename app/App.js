@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, ScrollView, Title, Image, ImageBackground, AppRegistry, Text, View, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
+import {Modal, Button, ScrollView, Title, Image, ImageBackground, AppRegistry, Text, View, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {createStackNavigator} from 'react-navigation';
 import {shoeList} from './data.js';
@@ -22,13 +22,26 @@ class HomeScreen extends Component{
 }
 
 class PageOne extends Component{
-  
-  sneakerDetails(){
+ 
+  constructor(props){
+    super(props);
+    this.state = {
+      modalVisible: false
+    }
+  }
+
+  sneakerDetails = () => {
+    this.setState({modalVisible: true})
+    }
+
+  returnModal = () => {
     return(
-      <Animatable.View animation= "zoomInUp" duration = {100} easing = "linear" style = {{height: (height/2), width: width, flex: 1, backgroundColor: "white"}}>
-       </Animatable.View>
+      <Modal visible = {this.state.modalVisible} style = {{height: 200, width: width, flex:1}}>
+        <Text> TESTING MODAL </Text>
+        </Modal>
     )
-    };
+  }
+  
 
 
   render(){
@@ -43,7 +56,7 @@ class PageOne extends Component{
           {
             shoeList.map(shoe => {
                 return(
-                <TouchableOpacity onLongPress = {this.sneakerDetails}>
+                <TouchableOpacity onPress = {this.sneakerDetails}>
                 <View style = {{padding: 10}}>
                     <View style = {{height: 100, width: 150}}>
                         <Image source = {shoe.image} style = {{height: null, width: null, resizeMode: 'cover', flex: 1, borderRadius: 20}}>
@@ -55,6 +68,12 @@ class PageOne extends Component{
                       </Text>
                     </View>
                 </View>
+                <Modal visible = {this.state.modalVisible}>
+                  <Animatable.View animation= "zoomInUp" duration = {1000} easing = "linear" style = {{height: height, width: width, flex: 1, backgroundColor: "white"}}>
+                    <Image source = {shoe.image} style = {{height: null, width: null, resizeMode: 'contain', flex: 1, borderRadius: 20}}>
+                    </Image>
+                  </Animatable.View>
+                </Modal>
                 </TouchableOpacity>
                 )
             })

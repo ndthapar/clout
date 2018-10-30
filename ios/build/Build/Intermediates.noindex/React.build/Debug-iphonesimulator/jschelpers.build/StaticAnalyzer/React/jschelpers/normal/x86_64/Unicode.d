@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/main/Desktop/streetwear/clout/node_modules/react-native/ReactCommon/jschelpers/Unicode.cpp \
-  /Users/main/Desktop/streetwear/clout/node_modules/react-native/ReactCommon/jschelpers/Unicode.h
+  /Users/main/Desktop/gitsource/node_modules/react-native/ReactCommon/jschelpers/Unicode.cpp \
+  /Users/main/Desktop/gitsource/node_modules/react-native/ReactCommon/jschelpers/Unicode.h
