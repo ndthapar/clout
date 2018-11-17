@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import {Modal, Button, ScrollView, Title, Image, ImageBackground, AppRegistry, Text, View, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -26,7 +27,8 @@ class PageOne extends Component{
   constructor(props){
     super(props);
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      currentModalIndex: 0
     }
   }
 
@@ -54,10 +56,10 @@ class PageOne extends Component{
         <View style = {{flex: 5, top: 20}}>
         <ScrollView contentContainerStyle = {{flexDirection: 'row', flexWrap: 'wrap', paddingLeft: 20}}>
           {
-            shoeList.map(shoe => {
+            shoeList.map((shoe, index) => {
                 return(
-                <TouchableOpacity onPress = {this.sneakerDetails}>
-                <View style = {{padding: 10}}>
+                <TouchableOpacity key = {index} onPress = {() => {this.setState({currentModalIndex: index}); this.setState({modalVisible: true})}}>
+                <View key = {index} style = {{padding: 10}}>
                     <View style = {{height: 100, width: 150}}>
                         <Image source = {shoe.image} style = {{height: null, width: null, resizeMode: 'cover', flex: 1, borderRadius: 20}}>
                         </Image>
@@ -68,17 +70,50 @@ class PageOne extends Component{
                       </Text>
                     </View>
                 </View>
-                <Modal visible = {this.state.modalVisible}>
-                  <Animatable.View animation= "zoomInUp" duration = {1000} easing = "linear" style = {{height: height, width: width, flex: 1, backgroundColor: "white"}}>
-                    <Image source = {shoe.image} style = {{height: null, width: null, resizeMode: 'contain', flex: 1, borderRadius: 20}}>
-                    </Image>
-                  </Animatable.View>
-                </Modal>
                 </TouchableOpacity>
                 )
             })
           }
           </ScrollView>
+          <View style = {{flex: 1}}>
+          <Modal visible = {this.state.modalVisible}>
+              <View style = {{flex: 0.25, resizeMode: "contain", alignItems: "center", flexDirection: "row"}}>
+                <View style = {{flex: 0.25, height: 50, width: width/4, backgroundColor: "white"}}>
+                    <TouchableOpacity onPress = {() => this.setState({modalVisible: false})}>
+                    <Image source = {require("./assets/backButton.png")} style = {{resizeMode: "cover", marginTop: 40, marginLeft: 10}}/>
+                    </TouchableOpacity>
+                  </View>
+                <Text style = {{fontSize: 20, fontWeight: '500', fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center",  marginTop: 50,marginLeft: 40, marginRight: 20}}>{shoeList[this.state.currentModalIndex].title}</Text>
+                <View style = {{flex: 0.25, height: 50, width: width/4 , backgroundColor: "white", alignContent: "flex-end"}}>
+                  </View>
+              </View>
+
+              <Animatable.View animation= "zoomInUp" duration = {1000} easing = "linear" style = {{height: height, width: width, flex: 1, backgroundColor: "white"}}>
+                <Image source = {shoeList[this.state.currentModalIndex].image} style = {{height: null, width: null, resizeMode: 'contain', flex: 1, borderRadius: 20}}>
+                </Image>
+              </Animatable.View>
+              
+                <View style = {{flex: 0.25, backgroundColor: "white", flexDirection: "row"}}>
+                  <Text style = {{fontSize: 25, fontWeight: "600" , fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center"}}>{"Release Date "}</Text>
+                  <Text style = {{fontSize: 25, fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center", resizeMode: "contain"}}>{"  "}{shoeList[this.state.currentModalIndex].releaseDate}</Text>
+                </View>
+                
+              
+              
+                <View style = {{flex: 0.25,  backgroundColor: "white", flexDirection: "row"}}>
+                  <Text style = {{fontSize: 25, fontWeight: "600" , fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center"}}>{"Retail Price "}</Text>
+                  <Text style = {{fontSize: 25, fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center", resizeMode: "contain"}}>{"  "}{shoeList[this.state.currentModalIndex].retailPrice}</Text>
+                </View>
+               
+         
+              
+                <View style = {{flex: 0.25, backgroundColor: "white", flexDirection: "row"}}>
+                  <Text style = {{fontSize: 25, fontWeight: "600" , fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center"}}>{"Current Price "}</Text>
+                  <Text style = {{fontSize: 25, fontFamily: 'AppleSDGothicNeo-UltraLight', textAlign: "center", resizeMode: "contain"}}>{"  "}{shoeList[this.state.currentModalIndex].currentPrice}</Text>
+                </View>
+              
+          </Modal>
+          </View>
           </View>
       </View>
     )
@@ -127,4 +162,3 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
   }
 });
-
